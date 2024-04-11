@@ -19,3 +19,4 @@ phpstan.neon
 /var/
 /vendor/
 /.idea/
+/.env
