@@ -8,14 +8,6 @@ jobs:
   symfony:
     name: Symfony 7.0(PHP ${{ matrix.php-versions }})
     runs-on: ubuntu-latest
-    services:
-      db:
-        image: postgres:16
-        env:
-          POSTGRES_PASSWORD: password
-          POSTGRES_DB: dbtest
-        ports:
-          - 5432:5432
     strategy:
       fail-fast: true
       matrix:
@@ -45,10 +37,12 @@ jobs:
         run: |
           php bin/console -V
 
+      # —— PhpStan 🗄️ —————————————————————————————————————————————————————————
       - name: Run PhpStan
         run: |
           php vendor/bin/phpstan analyse src --level=9
 
+      # —— PHPUnit 🧪 —————————————————————————————————————————————————————————
       - name: Run Functional and unit tests
         run: |
           cp phpunit.xml.dist phpunit.xml
