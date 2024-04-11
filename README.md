@@ -1,5 +1,10 @@
 # FizzBuzz
 ## Instalación y puesta en marcha
+Descargar el repositorio de la aplicación
+```bash
+git clone https://github.com/chuajose/fizzbuzz.git
+```
+
 Dentro de la carpeta docker, donde están los archivos necesarios para la creación de los contenedores de la aplicación. Para ello, se debe ejecutar el siguiente comando:
 
 ```bash
@@ -39,5 +44,10 @@ bin/console doctrine:schema:update --force
 ```
 Una vez hecho esto, ya podemos acceder a la aplicación. Para ello, debemos acceder a la siguiente URL:
 ```bash
-http://localhost/
+http://localhost/desafio/fizz/buzz
+```
+
+Si se produce un error al acceder a la aplicación, es posible que sea necesario ajustar los permisos de la carpeta var/cache y var/log
+```bash
+chmod -R 775 var/
 ```
