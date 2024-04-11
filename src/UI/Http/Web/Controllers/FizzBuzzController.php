@@ -36,11 +36,6 @@ class FizzBuzzController extends BaseController
         return $this->render('desafio/list.html.twig', [
             'form' => $form->createView(),
             'result' => $result,
-            'posts' => [],
-            'total' => 0,
-            'currentPage' => 0,
-            'limit' => 0,
-            'totalPages' => 0,
         ]);
     }
 }
