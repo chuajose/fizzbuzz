@@ -8,7 +8,7 @@ use App\Domain\FizzBuzz\Event\FizzBuzzWasCreated;
 use App\Domain\Shared\Aggregate\AggregateRoot;
 use Symfony\Component\Uid\Uuid;
 
-final class FizzBuzz extends AggregateRoot implements \JsonSerializable
+class FizzBuzz extends AggregateRoot implements \JsonSerializable
 {
     private Uuid $id;
     private int $begin;
