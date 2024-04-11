@@ -45,6 +45,10 @@ jobs:
         run: |
           php bin/console -V
 
+      - name: Run PhpStan
+        run: |
+          php vendor/bin/phpstan analyse src --level=9
+
       - name: Run Functional and unit tests
         run: |
           cp phpunit.xml.dist phpunit.xml
