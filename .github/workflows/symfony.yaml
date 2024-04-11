@@ -21,7 +21,14 @@ jobs:
       matrix:
         php-versions: ['8.3']
     steps:
-
+        # —— Setup PHP 🐘 —————————————————————————————————————————————————————————
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          extensions: intl, pdo_pgsql
+          coverage: xdebug
+          ini-values: xdebug.mode=coverage
 
       # —— Composer 🧙‍️ —————————————————————————————————————————————————————————
       - uses: actions/checkout@v3
