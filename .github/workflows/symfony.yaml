@@ -8,32 +8,16 @@ jobs:
   symfony:
     name: Symfony 7.0(PHP ${{ matrix.php-versions }})
     runs-on: ubuntu-latest
-    services:
-      db:
-        image: postgres:16
-        env:
-          POSTGRES_PASSWORD: password
-          POSTGRES_DB: dbtest
-        ports:
-          - 5432:5432
     strategy:
       fail-fast: true
       matrix:
         php-versions: ['8.3']
     steps:
-      # https://github.com/shivammathur/setup-php (community)
-      - name: Setup PHP, extensions and composer with shivammathur/setup-php
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php-versions }}
-          extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite, dom, filter, gd, iconv, json, pdo
-        env:
-          update: true
-
       # —— Composer 🧙‍️ —————————————————————————————————————————————————————————
       - uses: actions/checkout@v3
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.test', '.env');"
+
       - name: Install Dependencies
         run: composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
@@ -44,6 +28,10 @@ jobs:
       - name: Check the Symfony console
         run: |
           php bin/console -V
+
+      - name: Run PhpStan
+        run: |
+          php vendor/bin/phpstan analyse src --level=9
 
       - name: Run Functional and unit tests
         run: |
