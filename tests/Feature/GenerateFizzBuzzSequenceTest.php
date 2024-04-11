@@ -9,10 +9,15 @@ use App\Application\FizzBuzz\GenerateFizzBuzzSequence;
 use App\Domain\FizzBuzz\FizzBuzzRepository;
 use App\Domain\FizzBuzz\Model\FizzBuzz;
 use App\Domain\Shared\Messenger\MessengerBusInterface;
+use PHPUnit\Framework\MockObject\MockObject;
 
 class GenerateFizzBuzzSequenceTest extends \PHPUnit\Framework\TestCase
 {
+    /** @var (FizzBuzzRepository&MockObject) */
     private FizzBuzzRepository $fizzBuzzRepository;
+    /**
+     * @var (MessengerBusInterface&object&MockObject) $messengerBus
+     */
     private MessengerBusInterface $messengerBus;
 
     protected function setUp(): void

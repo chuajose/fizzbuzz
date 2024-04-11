@@ -11,6 +11,9 @@ use Symfony\Component\Validator\Validation;
 
 class FizzBuzzFormTest extends TypeTestCase
 {
+    /**
+     * @return array<int, ValidatorExtension>
+     */
     protected function getExtensions(): array
     {
         $validator = Validation::createValidatorBuilder()
